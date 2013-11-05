@@ -23,6 +23,8 @@ class Utils {
      * A random number generator for use in permutations and such.
      */
     static Random generator = new Random();
+    
+    static int counter;
 
     // +----------------+--------------------------------------------------
     // | Static Methods |
@@ -64,8 +66,33 @@ class Utils {
      */
     public static <T> T[] merge(Comparator<T> order, T[] a1, int lb1, 
             int ub1, T[] a2, int lb2, int ub2) {
+        T[] merged = (T[]) new Object[a1.length + a2.length];
+        int i = 0;
+        int firstPlace = lb1;
+        int secondPlace = lb2;
         
-        return null;
+        while (firstPlace < ub1 && secondPlace < ub2) {
+            if (order.compare(a1[firstPlace], a2[secondPlace]) <= 0) {
+        	merged[i] = a1[firstPlace];
+        	firstPlace++;
+            } else {
+        	merged[i] = a2[secondPlace];
+        	secondPlace++;
+            }
+            i++;
+        }
+        
+        while (firstPlace < ub1) {
+            merged[i] = a1[firstPlace];
+            firstPlace++;
+            i++;
+        }
+        while (secondPlace < ub2) {
+            merged[i] = a2[secondPlace];
+            secondPlace++;
+            i++;
+        }
+        return merged;
     } // merge(Comparator<T>, T[], int, int, T[], int, int)
 
     /**
@@ -146,7 +173,20 @@ class Utils {
         T tmp = values[i];
         values[i] = values[j];
         values[j] = tmp;
+        Utils.increment();
     } // swap(T[], int, int)
+    
+    public static void increment() {
+	Utils.counter++;
+    }
+    
+    public static void setCounter(int val) {
+	Utils.counter = val;
+    }
+    
+    public static int getCounter() {
+	return Utils.counter;
+    }
 
     // +-------------+-----------------------------------------------------
     // | Expermients |

@@ -38,7 +38,6 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
 		   }
 		   else {
 		       Utils.swap(vals, j, k);
-		       k++;
 		       j++;
 		   }
 		       

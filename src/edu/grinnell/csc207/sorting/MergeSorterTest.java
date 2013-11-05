@@ -10,12 +10,12 @@ import org.junit.Test;
 public class MergeSorterTest {
     @Test
     public void test1() {
-	TestUtils.test1(new Quicksorter<Integer>());
+	TestUtils.test1(new MergeSorter<Integer>());
     } // test1
 
     @Test
     public void test2() {
-	TestUtils.test2(new Quicksorter<Integer>());
+	TestUtils.test2(new MergeSorter<Integer>());
     } // test2
 
 } // MergeSorterTest
