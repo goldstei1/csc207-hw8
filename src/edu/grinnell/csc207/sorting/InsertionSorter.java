@@ -49,7 +49,7 @@ public class InsertionSorter<T> extends SorterBridge<T> {
        //   I2(i): Utils.sorted(values,i+1,n).
        //   I3(i): For all l and r, 0 <= l <= i, i < r <= n,
        //     order.compare(vals[l],vals[r]) <= 0
-       // I1(n) holds at the because it's a precondition.
+       // I1(n) holds at the beginning because it's a precondition.
        // I2(n) holds at the beginning because that subarray is empty
        // I3(n) holds at the beginning because the second subarray is empty
        int i = n;

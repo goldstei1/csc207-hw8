@@ -15,6 +15,9 @@ public class SelectionSorter<T> extends SorterBridge<T> {
     */
    @Override
    public T[] sorti(T[] vals, Comparator<T> order) {
+       
+       // Invariant: for all j and k, 0 <= j < i, j <= k < vals.length
+       //   order.compare(vals[j], vals[k]) <= 0
        for (int i = 0; i < vals.length; i++) {
            Utils.swap(vals, i, indexOfSmallest(vals, order, i, vals.length));
        } // for
@@ -41,15 +44,24 @@ public class SelectionSorter<T> extends SorterBridge<T> {
     * @pre
     *     order can be compared to any pair of values in values.
     * @post
-    *     lb <= i < ub
+    *     lb <= is < ub
     * @post
-    *     For all j, lb <= j < ub, order.compare(values[i], values[j]) <= 0.
+    *     For all j, lb <= j < ub, order.compare(values[is], values[j]) <= 0.
     * @post
     *     values is not mutated
     */
    int indexOfSmallest(T[] vals, Comparator<T> order, int lb, int ub) {
-       // STUB
-       return lb;
+       int is = lb;
+       
+       // Find the index of the smallest T in vals
+       // Invariant: For all k, lb <= k < i order.compare(vals[is], vals[k]) <= 0
+       for (int i = lb + 1; i < ub; i++) {
+	   if (order.compare(vals[is], vals[i]) > 0) {
+	       is = i;
+	   } // if
+       } // for
+       
+       return is;
    } // indexOfSmallest(T[], Comparator<T>, int, int)
 
 } // SelectionSorter<T>

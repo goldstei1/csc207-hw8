@@ -1,7 +1,7 @@
 package edu.grinnell.csc207.sorting;
 
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Random;
 
 /**
  * Sort using Quicksort.
@@ -64,7 +64,25 @@ public class Quicksorter<T> extends SorterBridge<T> {
     *    For all i, mid < i < ub, order.compare(pivot, values[i]) < 0
     */
    int partition(T[] vals, Comparator<T> order, int lb, int ub) {
-       // STUB
-       return lb;
+       Random r = new Random();
+       int upperInsert = ub - 1;
+       int pivotIndex = r.nextInt(vals.length);
+       T pivot = vals[pivotIndex];
+       
+	// Invariants:
+	// I1(n): for all j, upperInsert < j < vals.length,
+	//     order.compare(vals[j], vals[pivotIndex]) > 0)
+	// I2(n): for all k, 0 <= k < i, order.compare(vals[k],
+	//     vals[pivotIndex]) <= 0
+	for (int i = lb; i <= upperInsert; i++) {
+	   if (order.compare(pivot, vals[i]) > 0) {
+	       Utils.swap(vals, i, upperInsert);
+	       upperInsert--;
+	   } 
+       }
+       Utils.swap(vals, upperInsert, pivotIndex);
+       
+       // upperInsert is mid in that it is the position of the pivot after partitioning
+       return upperInsert;
    } // partition
 } // Quicksorter<T>

@@ -18,7 +18,35 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
    public T[] sorti(T[] vals, Comparator<T> order) {
        // STUB
        int size = 1;
+       int left;
+       int right;
+       int rightEnd;
+       int j,k;
        while (size < vals.length) {
+	   for(int i = 0; i + size < vals.length; i += (size*2)) {
+	       left = i;
+	       right = i + size;
+	       rightEnd = right + size;
+	       if(rightEnd > vals.length) {
+		   rightEnd = vals.length;
+	       }
+	       j = left;
+	       k = right;
+	       while(j < k && k < rightEnd) {
+		   if(order.compare(vals[j], vals[k]) <= 0) {
+		       j++;
+		   }
+		   else {
+		       Utils.swap(vals, j, k);
+		       k++;
+		       j++;
+		   }
+		       
+	       }
+	       if(order.compare(vals[i], vals[i+size]) > 0) {
+		   Utils.swap(vals, i, i + size);
+	       }
+	   }
            // Merge neighboring subarrays of size size
            // FILL IN!
            // The merged subarrays are now twice as large
