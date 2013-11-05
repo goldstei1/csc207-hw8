@@ -91,10 +91,16 @@ public class Quicksorter<T> extends SorterBridge<T> {
    
    public static void main(String args[]) {
        double average = 0;
+       Random r = new Random();
        Quicksorter<Integer> qs = new Quicksorter<Integer>();
        for (int i = 0; i < 1000; i++) {
 	   
-       qs.sorti(new Integer[] {3, 4, 7, 1, -1, 8, 9, 11, 3, 10, 5, -38}, StandardIntegerComparator.comparator);
+	  Integer[] in = new Integer[100]; 
+	  for (int j = 0; j < 100; j++) {
+	      in[j] = r.nextInt(100);
+	  }
+	  
+       qs.sorti(in, StandardIntegerComparator.comparator);
        int count = Utils.getCounter();
        average += ((double) count) / 1000;
        Utils.setCounter(0);

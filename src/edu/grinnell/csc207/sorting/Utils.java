@@ -64,6 +64,7 @@ class Utils {
      *    merged is a permutation of the concatenation of the given 
      *    subarrays of a1 and a2.
      */
+    @SuppressWarnings("unchecked")
     public static <T> T[] merge(Comparator<T> order, T[] a1, int lb1, 
             int ub1, T[] a2, int lb2, int ub2) {
         T[] merged = (T[]) new Object[a1.length + a2.length];
