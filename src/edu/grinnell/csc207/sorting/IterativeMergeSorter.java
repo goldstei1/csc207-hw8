@@ -15,14 +15,19 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
     * for additional details.
     */
    @Override
+   @SuppressWarnings({"unchecked"})
    public T[] sorti(T[] vals, Comparator<T> order) {
        // STUB
        int size = 1;
        int left;
        int right;
        int rightEnd;
-       int j,k;
+       int j;
+       int k;
+       int m;
+       T[] compileArray = (T[]) new Object[vals.length];
        while (size < vals.length) {
+	   
 	   for(int i = 0; i + size < vals.length; i += (size*2)) {
 	       left = i;
 	       right = i + size;
@@ -32,18 +37,31 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
 	       }
 	       j = left;
 	       k = right;
-	       while(j < k && k < rightEnd) {
+	       m = 0;
+	       while(j < right && k < rightEnd) {
 		   if(order.compare(vals[j], vals[k]) <= 0) {
+		       compileArray[m] = vals[j];
 		       j++;
+		       m++;
 		   }
 		   else {
-		       Utils.swap(vals, j, k);
-		       j++;
+		       compileArray[m] = vals[k];
+		       k++;
+		       m++;
 		   }
-		       
 	       }
-	       if(order.compare(vals[i], vals[i+size]) > 0) {
-		   Utils.swap(vals, i, i + size);
+	       while(j < right) {
+		   compileArray[m] = vals[j];
+		   j++;
+		   m++;
+	       }
+	       while(k < rightEnd) {
+		   compileArray[m] = vals[k];
+		   k++;
+		   m++;
+	       }
+	       for(int l = left; l < rightEnd; l++) {
+		   vals[l] = compileArray[l - left];
 	       }
 	   }
            // Merge neighboring subarrays of size size
