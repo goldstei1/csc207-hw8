@@ -16,8 +16,10 @@ public class SelectionSorter<T> extends SorterBridge<T> {
     @Override
     public T[] sorti(T[] vals, Comparator<T> order) {
 
-	// Invariant: for all j and k, 0 <= j < i, j <= k < vals.length
-	// order.compare(vals[j], vals[k]) <= 0
+	// Invariants:
+	// I1(i) = Utils.sorted(vals, 0, i).
+	// I2(i) = order.compareTo(vals[j], vals[i]) <= 0
+	//           for all 0 <= j < i
 	for (int i = 0; i < vals.length; i++) {
 	    Utils.swap(vals, i, indexOfSmallest(vals, order, i, vals.length));
 	} // for
@@ -27,10 +29,13 @@ public class SelectionSorter<T> extends SorterBridge<T> {
     /**
      * Find the index of a smallest element in positions [lb..ub) of values.
      * 
-     * @param values, the array into which we are inserting values.
-     * @param order, the comparator used to determine order.
-     * @param lb, the lower bound of the section to search. ub, the upper bound
-     *        of the section to search.
+     * @param values
+     *            , the array into which we are inserting values.
+     * @param order
+     *            , the comparator used to determine order.
+     * @param lb
+     *            , the lower bound of the section to search. ub, the upper
+     *            bound of the section to search.
      * 
      * @return is, the index of a smallest value
      * 
