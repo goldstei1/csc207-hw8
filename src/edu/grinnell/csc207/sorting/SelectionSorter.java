@@ -7,7 +7,8 @@ import java.util.Comparator;
  * Sort using selection sort.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Earnest Wheeler
+ * @author Daniel Goldstein
  */
 public class SelectionSorter<T> extends SorterBridge<T> {
    /**
