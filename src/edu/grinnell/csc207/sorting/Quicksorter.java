@@ -24,8 +24,8 @@ public class Quicksorter<T> extends SorterBridge<T> {
      * Sort the elements in positions [lb..ub) using Quicksort.
      */
     public void qsort(T[] vals, Comparator<T> order, int lb, int ub) {
+	
 	// One element arrays are sorted.
-
 	if (lb >= ub) {
 	    return;
 	} else {
@@ -80,6 +80,7 @@ public class Quicksorter<T> extends SorterBridge<T> {
 		i--;
 	    } // if
 	} // for
+	
 	// Set pivot to be the last element in the lower part of the array
 	Utils.swap(vals, upperInsert, lb);
 

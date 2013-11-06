@@ -76,21 +76,21 @@ class Utils {
 	    } else {
 		merged[i] = a2[secondPlace];
 		secondPlace++;
-	    }
+	    } // else
 	    i++;
-	}
+	} // while
 	// fill up the rest of the array with the (sorted) leftovers from
 	// whichever array still has uncopied values
 	while (firstPlace < ub1) {
 	    merged[i] = a1[firstPlace];
 	    firstPlace++;
 	    i++;
-	}
+	} // while
 	while (secondPlace < ub2) {
 	    merged[i] = a2[secondPlace];
 	    secondPlace++;
 	    i++;
-	}
+	} // while
 	return merged;
     } // merge(Comparator<T>, T[], int, int, T[], int, int)
 
@@ -110,7 +110,7 @@ class Utils {
     public static Integer[] randomSortedInts(int n) {
 	if (n == 0) {
 	    return new Integer[0];
-	}
+	} // if
 	Integer[] values = new Integer[n];
 	// Start with a negative number so that we have a mix
 	values[0] = generator.nextInt(10) - n;
@@ -186,15 +186,15 @@ class Utils {
 
     public static void increment() {
 	Utils.counter++;
-    }
+    } // increment()
 
     public static void setCounter(int val) {
 	Utils.counter = val;
-    }
+    } // setCounter(int val)
 
     public static int getCounter() {
 	return Utils.counter;
-    }
+    } // getCounter()
 
     // +-------------+-----------------------------------------------------
     // | Expermients |
