@@ -71,9 +71,9 @@ public class Quicksorter<T> extends SorterBridge<T> {
 
 	// Invariants:
 	// I1(i): for all j, upperInsert < j < vals.length,
-	// order.compare(vals[j], vals[pivotIndex]) > 0)
+	//     order.compare(vals[j], vals[pivotIndex]) > 0)
 	// I2(i): for all k, 0 <= k < i, order.compare(vals[k],
-	// vals[pivotIndex]) <= 0
+	//     vals[pivotIndex]) <= 0
 	for (int i = lb + 1; i <= upperInsert; i++) {
 	    if (order.compare(pivot, vals[i]) < 0) {
 		Utils.swap(vals, i, upperInsert);
