@@ -7,7 +7,8 @@ import java.util.Comparator;
  * Sort using iterative merge sort.
  * 
  * @author Samuel A. Rebelsky
- * @author Your Name Here.
+ * @author Earnest Wheeler
+ * @author Daniel Goldstein
  */
 public class IterativeMergeSorter<T> extends SorterBridge<T> {
     /**
