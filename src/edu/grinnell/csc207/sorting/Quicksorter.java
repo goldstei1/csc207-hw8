@@ -101,7 +101,7 @@ public class Quicksorter<T> extends SorterBridge<T> {
 	  }
 	  
        qs.sorti(in, StandardIntegerComparator.comparator);
-       int count = Utils.getCounter();
+       int count = Utils.getCounter(); 
        average += ((double) count) / 1000;
        Utils.setCounter(0);
        }
