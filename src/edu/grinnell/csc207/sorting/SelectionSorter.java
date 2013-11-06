@@ -49,8 +49,9 @@ public class SelectionSorter<T> extends SorterBridge<T> {
 	int is = lb;
 
 	// Find the index of the smallest T in vals
-	// Invariant: For all k, lb <= k < i order.compare(vals[is], vals[k]) <=
-	// 0
+	// Invariant: 
+	// I1(i) = order.compare(vals[is], vals[k]) <= 0
+	//           for all lb <= k < ub
 	for (int i = lb + 1; i < ub; i++) {
 	    if (order.compare(vals[is], vals[i]) > 0) {
 		is = i;
