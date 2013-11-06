@@ -24,7 +24,7 @@ public class Quicksorter<T> extends SorterBridge<T> {
      * Sort the elements in positions [lb..ub) using Quicksort.
      */
     public void qsort(T[] vals, Comparator<T> order, int lb, int ub) {
-	
+
 	// One element arrays are sorted.
 	if (lb >= ub) {
 	    return;
@@ -41,10 +41,14 @@ public class Quicksorter<T> extends SorterBridge<T> {
      * elements bigger than the pivot appear to the right of the pivot, and the
      * pivot is in the middle.
      * 
-     * @param values, an array.
-     * @param order, a comparator.
-     * @param lb, an integer.
-     * @param ub, an integer.
+     * @param values
+     *            , an array.
+     * @param order
+     *            , a comparator.
+     * @param lb
+     *            , an integer.
+     * @param ub
+     *            , an integer.
      * @return mid, the index of the pivot.
      * 
      * @pre order can be applied to any pair of elements in vals.
@@ -60,27 +64,27 @@ public class Quicksorter<T> extends SorterBridge<T> {
 	// Select an element to be the pivot at random between lb and ub
 	int pivotIndex = r.nextInt(ub - lb) + lb;
 	T pivot = vals[pivotIndex];
-	
+
 	// Move the pivot to the front of the array so we know where it is after
 	// the array has been split into two parts
 	Utils.swap(vals, pivotIndex, lb);
 
 	// Invariants:
-	// I1(n): for all j, upperInsert < j < vals.length,
-	//     order.compare(vals[j], vals[pivotIndex]) > 0)
-	// I2(n): for all k, 0 <= k < i, order.compare(vals[k],
-	//     vals[pivotIndex]) <= 0
+	// I1(i): for all j, upperInsert < j < vals.length,
+	// order.compare(vals[j], vals[pivotIndex]) > 0)
+	// I2(i): for all k, 0 <= k < i, order.compare(vals[k],
+	// vals[pivotIndex]) <= 0
 	for (int i = lb + 1; i <= upperInsert; i++) {
 	    if (order.compare(pivot, vals[i]) < 0) {
 		Utils.swap(vals, i, upperInsert);
 		upperInsert--;
 		// The loop will need to check the element that was swapped
-		// to the current position so make sure i stays in the same 
+		// to the current position so make sure i stays in the same
 		// place in vals.
 		i--;
 	    } // if
 	} // for
-	
+
 	// Set pivot to be the last element in the lower part of the array
 	Utils.swap(vals, upperInsert, lb);
 
@@ -125,5 +129,4 @@ public class Quicksorter<T> extends SorterBridge<T> {
 	System.out.flush();
     } // main
 } // Quicksorter<T>
-
 
