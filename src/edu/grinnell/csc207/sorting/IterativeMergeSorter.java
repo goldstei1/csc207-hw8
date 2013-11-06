@@ -26,6 +26,7 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
 	int m; // index for the temporary array being sorted
 	T[] compileArray = (T[]) new Object[vals.length];
 	while (size < vals.length) {
+	    // Merge neighboring subarrays of size size
 	    for (int i = 0; i + size < vals.length; i += (size * 2)) {
 		left = i;
 		right = i + size;
@@ -64,8 +65,7 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
 		for (int l = left; l < rightEnd; l++) {
 		    vals[l] = compileArray[l - left];
 		}
-	    } // Merge neighboring subarrays of size size
-	      // The merged subarrays are now twice as large
+	    } // The merged subarrays are now twice as large
 	    size *= 2;
 	} // while
 	return vals;
