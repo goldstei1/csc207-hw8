@@ -27,7 +27,10 @@ public class IterativeMergeSorter<T> extends SorterBridge<T> {
 	int m; // index for the temporary array being sorted
 	T[] compileArray = (T[]) new Object[vals.length];
 	while (size < vals.length) {
-	    // Merge neighboring subarrays of size size
+	 // Invariants:
+		//   I1(i) = Utils.sorted(vals, left, right).
+		//   I2(i) = Utils.sorted(vals, right, rightEnd)
+		//   I3(i) = Utils.sorted(compileArray, 0, m)
 	    for (int i = 0; i + size < vals.length; i += (size * 2)) {
 		left = i;
 		right = i + size;
